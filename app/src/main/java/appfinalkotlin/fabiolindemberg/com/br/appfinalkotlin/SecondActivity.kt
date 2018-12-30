@@ -31,11 +31,11 @@ class SecondActivity : AppCompatActivity() {
 
     fun getCars(): List<Car> {
         val cars = ArrayList<Car>()
-        cars.add(Car("HB20", 2015))
-        cars.add(Car("UNO", 2008))
-        cars.add(Car("C3", 2011))
-        cars.add(Car("XTZ", 2005))
-        cars.add(Car("YBR", 2007))
+        cars.add(Car("HB20 Confort Plus 1.0", 2015))
+        cars.add(Car("UNO Mile 1.0", 2008))
+        cars.add(Car("C3 Converse 1.4", 2011))
+        cars.add(Car("POLO BEETS 2018", 2018))
+        cars.add(Car("SPORTAGE", 2014))
 
         return cars
     }
