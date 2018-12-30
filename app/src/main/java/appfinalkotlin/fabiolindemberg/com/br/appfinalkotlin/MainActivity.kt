@@ -24,8 +24,12 @@ class MainActivity : AppCompatActivity() {
 
         if( resultCode == Activity.RESULT_OK){
             if( data != null){
-                etResult.text = data.getStringExtra("RESULT_TEXT")
+                etResult.text = data.getStringExtra(RESULT_KEY)
             }
         }
+    }
+
+    companion object {
+        val RESULT_KEY = "RESULT_KEY"
     }
 }

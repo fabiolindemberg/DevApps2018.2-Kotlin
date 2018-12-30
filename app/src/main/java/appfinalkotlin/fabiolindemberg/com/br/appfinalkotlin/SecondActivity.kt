@@ -6,15 +6,10 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_second.*
-import kotlinx.android.synthetic.main.detail.view.*
 
 class SecondActivity : AppCompatActivity() {
 
-    //private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: CarListAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
@@ -36,16 +31,16 @@ class SecondActivity : AppCompatActivity() {
         return cars
     }
 
-    fun clickItem(car: Car){
+    fun selectCar(car: Car){
         val data = Intent()
-        data.putExtra("RESULT_TEXT", "Selected car: ${car.name}(${car.year})")
+        data.putExtra(MainActivity.RESULT_KEY, "Selected car: ${car.name}(${car.year})")
         setResult(Activity.RESULT_OK, data)
         finish()
     }
 
     fun setUpRecyclerView(){
         viewManager = LinearLayoutManager(this)
-        viewAdapter = CarListAdapter(getCars(), ::clickItem)
+        viewAdapter = CarListAdapter(getCars(), ::selectCar)
 
         rvList.setHasFixedSize(true)
         rvList.layoutManager = viewManager
