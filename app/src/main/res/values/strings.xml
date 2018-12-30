@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">AppFinalKotlin</string>
+    <string name="btn_select_car">Selecionar Carro</string>
+</resources>
