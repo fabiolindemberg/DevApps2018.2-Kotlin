@@ -1,5 +1,7 @@
 package appfinalkotlin.fabiolindemberg.com.br.appfinalkotlin
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Parcel
@@ -8,6 +10,7 @@ import android.support.v7.widget.FitWindowsLinearLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_second.*
@@ -37,15 +40,23 @@ class SecondActivity : AppCompatActivity() {
         return cars
     }
 
+    fun clickItem(car: Car){
+        val data = Intent()
+        data.putExtra("RESULT_TEXT", "Selected car: ${car.name}(${car.year})")
+        setResult(Activity.RESULT_OK, data)
+        finish()
+    }
+
     fun setUpRecyclerView(){
         viewManager = LinearLayoutManager(this)
-        viewAdapter = MyAdapter(getCars())
+        viewAdapter = MyAdapter(getCars(), ::clickItem)
+
         rvList.setHasFixedSize(true)
         rvList.layoutManager = viewManager
         rvList.adapter = viewAdapter
     }
 
-    class MyAdapter(var cars: List<Car>) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+    class MyAdapter(var cars: List<Car>, val click: (Car)->Unit) : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
 
         class MyViewHolder(val linearLayout: LinearLayout): RecyclerView.ViewHolder(linearLayout)
 
@@ -62,6 +73,11 @@ class SecondActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: MyAdapter.MyViewHolder, position: Int) {
             holder.linearLayout.car_name.text = this.cars[position].name
             holder.linearLayout.car_year.text = this.cars[position].year.toString()
+
+            holder.linearLayout.setOnClickListener({view ->
+                click(this.cars[position])
+            })
+
         }
 
 
