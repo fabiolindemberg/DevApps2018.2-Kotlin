@@ -5,6 +5,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_result.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,7 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         if( resultCode == Activity.RESULT_OK){
             if( data != null){
-                etResult.text = data.getStringExtra(RESULT_KEY)
+                //etResult.text = data.getStringExtra(RESULT_KEY)
+                fragment_text.text = data.getStringExtra(RESULT_KEY)
             }
         }
     }
